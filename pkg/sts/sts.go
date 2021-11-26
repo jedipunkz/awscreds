@@ -8,11 +8,6 @@ import (
 	"github.com/aws/aws-sdk-go/service/sts"
 )
 
-const (
-	profilename = "sandbox"
-	region      = "ap-northeast-1"
-)
-
 // Identity is
 type Identity struct {
 	session           *session.Session
@@ -27,7 +22,7 @@ type Identity struct {
 }
 
 // NewIdentity is constractor
-func NewIdentity() *Identity {
+func NewIdentity(profilename string) *Identity {
 	identity := new(Identity)
 	identity.session = session.Must(session.NewSessionWithOptions(session.Options{Profile: profilename}))
 	return identity

@@ -19,7 +19,7 @@ var setCmd = &cobra.Command{
 	Short: "setup aws creds",
 	Long:  "setup aws credentials via MFA Number",
 	Run: func(cmd *cobra.Command, args []string) {
-		i := sts.NewIdentity()
+		i := sts.NewIdentity(setFlags.profile)
 		err := i.GetCallerIdentity()
 		if err != nil {
 			log.Fatal(err)
