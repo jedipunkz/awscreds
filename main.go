@@ -1,7 +1,7 @@
 package main
 
 import (
-	"awscreds/cmd"
+	"github.com/jedipunkz/awscreds/cmd"
 )
 
 func main() {

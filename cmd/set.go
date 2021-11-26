@@ -1,10 +1,10 @@
 package cmd
 
 import (
-	"awscreds/pkg/sts"
 	"fmt"
 	"log"
 
+	"github.com/jedipunkz/awscreds/pkg/sts"
 	"github.com/spf13/cobra"
 )
 
