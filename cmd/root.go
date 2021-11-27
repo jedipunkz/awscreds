@@ -7,9 +7,10 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "awscreds",
 	Short: "aws creds tool",
-	Long:  "aws creds tool by using MFA Device",
+	Long:  "aws creds tool by using mfa device",
 }
 
+// Execute is function for execute rootCmd
 func Execute() {
 	cobra.CheckErr(rootCmd.Execute())
 }

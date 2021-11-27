@@ -8,7 +8,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/sts"
 )
 
-// Identity is
+// Identity is struct for communicate sts identity
 type Identity struct {
 	session           *session.Session
 	Account           string
@@ -21,14 +21,14 @@ type Identity struct {
 	SessionToken      string
 }
 
-// NewIdentity is constractor
+// NewIdentity is constractor for sts
 func NewIdentity(profilename string) *Identity {
 	identity := new(Identity)
 	identity.session = session.Must(session.NewSessionWithOptions(session.Options{Profile: profilename}))
 	return identity
 }
 
-// GetCallerIdentity is
+// GetCallerIdentity is function for getting identity
 func (i *Identity) GetCallerIdentity() error {
 	svc := sts.New(i.session)
 	input := &sts.GetCallerIdentityInput{}
@@ -47,7 +47,7 @@ func (i *Identity) GetCallerIdentity() error {
 	return nil
 }
 
-// GetSessionToken is
+// GetSessionToken is function for getting token
 func (i *Identity) GetSessionToken(mfanum string) error {
 	svc := sts.New(i.session)
 	input := &sts.GetSessionTokenInput{
@@ -65,15 +65,3 @@ func (i *Identity) GetSessionToken(mfanum string) error {
 	i.SessionToken = *result.Credentials.SessionToken
 	return nil
 }
-
-// func main() {
-// 	identity := NewIdentity()
-// 	identity.getCallerIdentity()
-// 	identity.getSessionToken()
-//
-// 	fmt.Println("set -x AWS_PROFILE " + profilename)
-// 	fmt.Println("set -x AWS_REGION " + region)
-// 	fmt.Println("set -x AWS_ACCESS_KEY_ID " + identity.AccessKeyID)
-// 	fmt.Println("set -x AWS_SECRET_ACCESS_KEY " + identity.SecretAccessKeyID)
-// 	fmt.Println("set -x AWS_SESSION_TOKEN " + identity.SessionToken)
-// }
