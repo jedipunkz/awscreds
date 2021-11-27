@@ -24,7 +24,7 @@ awscreds set -p <aws-config-profile-name> -r <region-name> -m <mfa-number> | sou
 
 ## License
 
-MIT
+[Apache License 2.0](https://github.com/jedipunkz/awscreds/blob/main/LICENSE)
 
 ## Author
 
