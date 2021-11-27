@@ -18,8 +18,16 @@ go install github.com/jedipunkz/awscreds@latest
 
 ## Usage
 
+### Fish
+
 ```shell
 awscreds set -p <aws-config-profile-name> -r <region-name> -m <mfa-number> | source
+```
+
+### Zsh, Bash
+
+```shell
+eval `awscreds set -p <aws-config-profile-name> -r <region-name> -m <mfa-number>`
 ```
 
 ## License
