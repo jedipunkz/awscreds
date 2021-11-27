@@ -1,6 +1,6 @@
 # awscreds
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/jedipunkz/awscreds/CI?style=flat-square)](https://github.com/jedipunkz/awscreds/actions?query=workflow%3Ago-ci)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/jedipunkz/awscreds/go-ci?style=flat-square)](https://github.com/jedipunkz/awscreds/actions?query=workflow%3Ago-ci)
 
 ## What is awscreds?
 
