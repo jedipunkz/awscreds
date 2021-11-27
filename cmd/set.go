@@ -39,9 +39,18 @@ var setCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(setCmd)
 	setCmd.Flags().StringVarP(&setFlags.mfa, "mfanum", "m", "", "mfanum: <MFA_NUM>")
-	setCmd.MarkFlagRequired("mfanum")
+	err := setCmd.MarkFlagRequired("mfanum")
+	if err != nil {
+		log.Fatal(err)
+	}
 	setCmd.Flags().StringVarP(&setFlags.region, "region", "r", "", "region: <region name>")
-	setCmd.MarkFlagRequired("region")
+	err = setCmd.MarkFlagRequired("region")
+	if err != nil {
+		log.Fatal(err)
+	}
 	setCmd.Flags().StringVarP(&setFlags.profile, "profile", "p", "", "profile: <profile name>")
-	setCmd.MarkFlagRequired("profile")
+	err = setCmd.MarkFlagRequired("profile")
+	if err != nil {
+		log.Fatal(err)
+	}
 }
