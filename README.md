@@ -1,5 +1,7 @@
 # awscreds
 
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/jedipunkz/awscreds/CI?style=flat-square)](https://github.com/jedipunkz/awscreds/actions?query=workflow%3Ago-ci)
+
 ## What is awscreds?
 
 awscreds is CLI tool to setup aws credentials with MFA device.
