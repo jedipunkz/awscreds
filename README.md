@@ -4,11 +4,17 @@
 
 ## What is awscreds?
 
-awscreds is CLI tool to setup aws credentials with MFA device.
+awscreds is a CLI tool to setup aws credentials for terminal shell with MFA device authentication.
 
 ## Requirement
 
 - go 1.17.x or earlier
+- awscli (pip install awscli & aws configure)
+
+```shell
+pip install awscli
+aws configure --profile <aws-config-profile-name>
+```
 
 ## Installation
 
@@ -17,6 +23,15 @@ go install github.com/jedipunkz/awscreds@latest
 ```
 
 ## Usage
+
+### Options
+
+| Option | Explanation             | Requre |
+|--------|-------------------------|--------|
+| -m     | MFA Number              | YES    |
+| -p     | aws config profile name | YES    |
+| -r     | aws region name         | YES    |
+| -s     | shell (fish, zsh, bash, sh) | No |
 
 ### Fish
 
