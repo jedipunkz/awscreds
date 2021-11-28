@@ -2,11 +2,11 @@ package cmd
 
 import (
 	"fmt"
-	"log"
 	"strings"
 
 	"github.com/jedipunkz/awscreds/pkg/sts"
 	"github.com/riywo/loginshell"
+	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
@@ -17,33 +17,34 @@ var setFlags struct {
 	shell   string
 }
 
+func getShell() (shell string) {
+	if setFlags.shell == "" {
+		loginshell, err := loginshell.Shell()
+		if err != nil {
+			log.Fatalln(err)
+		}
+		s := strings.Split(loginshell, "/")
+		shell = s[len(s)-1] // last word is shell name
+	} else {
+		shell = setFlags.shell
+	}
+	return shell
+}
+
 var setCmd = &cobra.Command{
 	Use:   "set",
 	Short: "setup aws creds",
 	Long:  "setup aws credentials via MFA Number",
 	Run: func(cmd *cobra.Command, args []string) {
 		i := sts.NewIdentity(setFlags.profile)
-		err := i.GetCallerIdentity()
-		if err != nil {
-			log.Fatal(err)
+		if err := i.GetCallerIdentity(); err != nil {
+			log.Fatalln(err)
 		}
-		err = i.GetSessionToken(setFlags.mfa)
-		if err != nil {
-			log.Fatal(err)
+		if err := i.GetSessionToken(setFlags.mfa); err != nil {
+			log.Fatalln(err)
 		}
 
-		var shell string
-		if setFlags.shell == "" {
-			loginshell, err := loginshell.Shell()
-			if err != nil {
-				log.Fatal(err)
-			}
-			s := strings.Split(loginshell, "/")
-			shell = s[len(s)-1] // last word is shell name
-		} else {
-			shell = setFlags.shell
-		}
-
+		shell := getShell()
 		switch shell {
 		case "fish":
 			fmt.Println("set -x AWS_PROFILE " + setFlags.profile)
@@ -58,7 +59,7 @@ var setCmd = &cobra.Command{
 			fmt.Println("export AWS_SECRET_ACCESS_KEY=" + i.SecretAccessKeyID)
 			fmt.Println("export AWS_SESSION_TOKEN=" + i.SessionToken)
 		default:
-			fmt.Printf("Your shell: %s is no valid.", shell)
+			log.Fatalln("Your shell is invalid.:", shell)
 		}
 	},
 }
@@ -66,19 +67,16 @@ var setCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(setCmd)
 	setCmd.Flags().StringVarP(&setFlags.mfa, "mfanum", "m", "", "mfa number")
-	err := setCmd.MarkFlagRequired("mfanum")
-	if err != nil {
-		log.Fatal(err)
+	if err := setCmd.MarkFlagRequired("mfanum"); err != nil {
+		log.Fatalln(err)
 	}
 	setCmd.Flags().StringVarP(&setFlags.region, "region", "r", "", "region name")
-	err = setCmd.MarkFlagRequired("region")
-	if err != nil {
-		log.Fatal(err)
+	if err := setCmd.MarkFlagRequired("region"); err != nil {
+		log.Fatalln(err)
 	}
 	setCmd.Flags().StringVarP(&setFlags.profile, "profile", "p", "", "profile name")
-	err = setCmd.MarkFlagRequired("profile")
-	if err != nil {
-		log.Fatal(err)
+	if err := setCmd.MarkFlagRequired("profile"); err != nil {
+		log.Fatalln(err)
 	}
 	setCmd.Flags().StringVarP(&setFlags.shell, "shell", "s", "", "current shell")
 }
