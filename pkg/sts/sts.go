@@ -51,7 +51,7 @@ func (i *Identity) GetCallerIdentity() error {
 func (i *Identity) GetSessionToken(mfanum string) error {
 	svc := sts.New(i.session)
 	input := &sts.GetSessionTokenInput{
-		DurationSeconds: aws.Int64(3600),
+		DurationSeconds: aws.Int64(43200), // 12 hours
 		SerialNumber:    aws.String(i.SerialNumber),
 		TokenCode:       aws.String(mfanum),
 	}
