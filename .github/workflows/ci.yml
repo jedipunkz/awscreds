@@ -31,6 +31,14 @@ jobs:
       - name: build
         run: go build ./...
 
+  test:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: test
+        run: go test ./... -v
+
   lint:
     needs: setup
     runs-on: ubuntu-latest
