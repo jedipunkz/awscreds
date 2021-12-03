@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/jedipunkz/awscreds/pkg/sts"
+	"github.com/jedipunkz/awscreds/internal/sts"
 	"github.com/riywo/loginshell"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
