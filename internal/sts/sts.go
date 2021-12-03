@@ -22,13 +22,6 @@ type Identity struct {
 	SessionToken      string
 }
 
-// NewIdentity is constractor for sts
-// func NewIdentity(profilename string) *Identity {
-// 	identity := new(Identity)
-// 	identity.session = session.Must(session.NewSessionWithOptions(session.Options{Profile: profilename}))
-// 	return identity
-// }
-
 // GetIdentity is function for getting identity
 func (i *Identity) GetIdentity(svc stsiface.STSAPI) error {
 	// svc := sts.New(i.session)

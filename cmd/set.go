@@ -42,7 +42,6 @@ var setCmd = &cobra.Command{
 		svc := sts.New(sess)
 		i := mysts.Identity{}
 
-		// i := sts.NewIdentity(setFlags.profile)
 		if err := i.GetIdentity(svc); err != nil {
 			log.Fatalln(err)
 		}
