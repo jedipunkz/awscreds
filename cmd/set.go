@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/jedipunkz/awscreds/internal/sts"
+	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/sts"
+	mysts "github.com/jedipunkz/awscreds/internal/sts"
 	"github.com/riywo/loginshell"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -36,11 +38,15 @@ var setCmd = &cobra.Command{
 	Short: "setup aws creds",
 	Long:  "setup aws credentials via MFA Number",
 	Run: func(cmd *cobra.Command, args []string) {
-		i := sts.NewIdentity(setFlags.profile)
-		if err := i.GetCallerIdentity(); err != nil {
+		sess := session.Must(session.NewSessionWithOptions(session.Options{Profile: setFlags.profile}))
+		svc := sts.New(sess)
+		i := mysts.Identity{}
+
+		// i := sts.NewIdentity(setFlags.profile)
+		if err := i.GetIdentity(svc); err != nil {
 			log.Fatalln(err)
 		}
-		if err := i.GetSessionToken(setFlags.mfa); err != nil {
+		if err := i.GetToken(setFlags.mfa, svc); err != nil {
 			log.Fatalln(err)
 		}
 
