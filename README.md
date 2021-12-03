@@ -21,7 +21,7 @@ go install github.com/jedipunkz/awscreds@latest
 
 ### Options
 
-| Option | Explanation             | Requred |
+| Option | Explanation             | Required |
 |--------|-------------------------|--------|
 | -m     | MFA Number              | YES    |
 | -p     | aws config profile name | YES    |
