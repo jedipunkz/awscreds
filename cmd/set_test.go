@@ -9,7 +9,7 @@ func Test_getShell(t *testing.T) {
 	}{
 		{
 			name:      "normal1",
-			wantShell: "fish",
+			wantShell: "bash", // GitHub Actions shell is bash
 		},
 	}
 	for _, tt := range tests {
