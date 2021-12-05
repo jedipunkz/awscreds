@@ -8,7 +8,7 @@ awscreds is a CLI tool to setup aws credentials for terminal shell with MFA devi
 
 ## Requirement
 
-- go 1.17.x or earlier
+- go 1.17.x or later
 - awscli (pip install awscli & aws configure)
 
 ## Installation
