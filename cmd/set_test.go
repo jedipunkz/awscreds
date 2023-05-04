@@ -1,8 +1,19 @@
 package cmd
 
-import "testing"
+import (
+	"os"
+	"strings"
+	"testing"
+)
 
 func Test_getShell(t *testing.T) {
+	// Skip the test if the environment is not bash
+	if strings.Contains(os.Getenv("SHELL"), "fish") {
+		t.Skip("Skipping test in fish environment")
+	} else if strings.Contains(os.Getenv("SHELL"), "zsh") {
+		t.Skip("Skipping test in zsh environment")
+	}
+
 	tests := []struct {
 		name      string
 		wantShell string
