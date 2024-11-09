@@ -1,0 +1,17 @@
+version: 2
+
+updates:
+  - package-ecosystem: github-actions
+    directory: .github/workflows
+    schedule:
+      interval: monthly
+    labels:
+      - dependencies
+      - version-updates
+  - package-ecosystem: gomod
+    directory: /
+    schedule:
+      interval: monthly
+    labels:
+      - dependencies
+      - version-updates
