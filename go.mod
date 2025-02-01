@@ -3,7 +3,7 @@ module github.com/jedipunkz/awscreds
 go 1.22.6
 
 require (
-	github.com/aws/aws-sdk-go v1.55.5
+	github.com/aws/aws-sdk-go v1.55.6
 	github.com/riywo/loginshell v0.0.0-20200815045211-7d26008be1ab
 	github.com/sirupsen/logrus v1.9.3
 	github.com/spf13/cobra v1.8.1
